@@ -14,7 +14,7 @@ function sma($closes, $n)
 {
     $m   = count($closes);
     $SMA = [];
-	if ($m > $n){
+	if ($m >= $n){
 		for ($i = $n; $i < $m; $i++) {
 			$temp = 0;
 			for ($j = ($i - $n); $j < $i; $j++) {
