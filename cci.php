@@ -13,15 +13,6 @@
 
 function cci($highs, $lows, $closes, $n)
 {
-	function cci_sma($prices, $n)
-	{
-		$temp = 0;
-		for ($i = 0; $i < $n; $i++) {
-			$temp += $prices[$i];
-		}
-		$SMA = $temp / $n;
-		return $SMA;
-	}
 	$m = count($closes);
 	if ($m >= $n){
 		$CCI = [];
@@ -31,11 +22,11 @@ function cci($highs, $lows, $closes, $n)
 			for ($j = ($i - $n); $j < $i; $j++) {
 				$TP[] = ($highs[$j] + $lows[$j] + $closes[$j]) / 3;
 			}
-			$SMA_TP = cci_sma($TP,$n);
+			$SMA_TP = array_reduce($TP,function ($var1,$var2){return $var1+$var2;})/$n;
 			for ($j = 0; $j < $n; $j++) {
 				$MD[] = abs($SMA_TP - $TP[$j]);
 			}
-			$SMA_MD = cci_sma($MD,$n);
+			$SMA_MD = array_reduce($MD,function ($var1,$var2){return $var1+$var2;})/$n;
 			$CCI[] = (array_pop($TP) - $SMA_TP) / (0.015 * $SMA_MD);
 		}
 		return $CCI;
