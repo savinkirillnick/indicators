@@ -14,12 +14,16 @@
 function ema($closes, $n)
 {
     $m   = count($closes);
-    $a   = 2 / ($n + 1);
-    $EMA = [];
-    $EMA[] = $closes[0];
-    for ($i = 1; $i < $m; $i++) {
-        $EMA[] = ($a * $closes[$i]) + ((1 - $a) * $EMA[$i - 1]);
+    if ($m > $n) {
+        $a   = 2 / ($n + 1);
+        $EMA = [];
+        $EMA[] = $closes[0];
+        for ($i = 1; $i < $m; $i++) {
+            $EMA[] = ($a * $closes[$i]) + ((1 - $a) * $EMA[$i - 1]);
+        }
+        return $EMA;
+    } else {
+        return false;
     }
-    return $EMA;
 }
 ?>
