@@ -14,7 +14,7 @@
 function ema($closes, $n)
 {
     $m   = count($closes);
-    if ($m > $n) {
+    if ($m >= $n) {
         $a   = 2 / ($n + 1);
         $EMA = [];
         $EMA[] = $closes[0];
