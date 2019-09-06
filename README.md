@@ -1,2 +1,2 @@
-# indicators
-trader functions in PHP
+# Exchange Indicators
+Functions in PHP
